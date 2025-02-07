@@ -1,0 +1,41 @@
+{
+  "name": "Express-Node-Sails",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node build/index.js",
+    "tsc": "tsc",
+    "dev": "rm -rfv build && tsc && node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@gear-js/api": "0.38.3",
+    "@polkadot/api": "13.2.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/crypto-js": "^4.2.2",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "crypto-js": "^4.2.0",
+    "express": "5.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "sails-js": "0.3.1",
+    "sails-js-parser": "0.3.1",
+    "sailscalls": "Vara-Lab/SailsCalls#types-test",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^20.14.7",
+    "dotenv": "^16.4.7",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}
