@@ -10,6 +10,7 @@ import { SailsCalls } from "sailscalls";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import express from "express";
+import { sailscalls } from "./config/sailsCalls.js";
 
 dotenv.config();
 
@@ -42,7 +43,7 @@ const startServer = async () => {
         process.on('SIGINT', async () => {
             console.log('C\nlosing server...');
             // Disconnect from vara network
-            await app.locals.sailscalls.disconnectGearApi();
+            await sailscalls?.disconnectGearApi();
             // Close the server
             server.close(() => {
                 console.log('Server was closed!');
