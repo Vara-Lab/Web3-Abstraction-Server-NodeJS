@@ -20,9 +20,6 @@ const sendGreen = (userCodedName: string, voucherId: HexString, signer: IKeyring
                 ]
             });
 
-            console.log('Lo que se obtuvo:');
-            console.log(response);
-
             resolve(response);
         } catch (e) {
             console.log(e);
@@ -49,9 +46,6 @@ const sendYellow = (userCodedName: string, voucherId: HexString, signer: IKeyrin
                 ]
             });
 
-            console.log('Lo que se obtuvo:');
-            console.log(response);
-
             resolve(response);
         } catch (e) {
             console.log(e);
@@ -77,9 +71,6 @@ const sendRed = (userCodedName: string, voucherId: HexString, signer: IKeyringPa
                     userCodedName
                 ]
             });
-
-            console.log('Lo que se obtuvo:');
-            console.log(response);
 
             resolve(response);
         } catch (e) {

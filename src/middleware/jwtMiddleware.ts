@@ -13,8 +13,6 @@ const userIsAlreadyLoggedIn = async (req: Request, res: Response, next: NextFunc
     if (token) {
         const data = await dataFromJWT(token);
 
-        console.log(data);
-        
         if (data) {
             res.clearCookie('token');
             res.status(400).json({ message: 'user is already logged in' });
@@ -33,7 +31,6 @@ const userIsLoggedIn = (req: Request, res: Response, next: NextFunction) => {
         return;
     }
 
-    console.log('Token: ', token);
     next();
 };
 

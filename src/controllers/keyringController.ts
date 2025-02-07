@@ -34,9 +34,6 @@ const userKeyringAddress = async (req: Request, res: Response) => {
     const token = req.cookies.token;
     const data = await dataFromJWT(token) as JWTData;
 
-    console.log('Data from JWT');
-    console.log(data);
-
     const hashedUsername = encryptString(data.username);
 
     const userKeyringAddress = await keyringModel.userKeyringAddress(hashedUsername);
@@ -54,8 +51,6 @@ const loginUser = async (req: Request, res: Response) => {
         res.status(500).send('SailsCalls is not ready');
         return;
     }
-    
-    console.log(req.body);
 
     const data = req.body;
     const result = userDataSchema.safeParse(data);
@@ -82,10 +77,6 @@ const loginUser = async (req: Request, res: Response) => {
         return;
     }
 
-    console.log('User keyring pair address');
-    console.log(userKeyringAddress);
-
-
     const formatedKeyringData = await keyringModel.userKeyringData(userKeyringAddress as HexString);
     let lockedKeyringData;
 
@@ -99,8 +90,6 @@ const loginUser = async (req: Request, res: Response) => {
             hashedPassword
         );
 
-        console.log('Keyring pair locked');
-        console.log(lockedKeyringData);
     } catch(e) {
         res.status(401).send({
             message: "Bad credentials"
@@ -148,14 +137,8 @@ const registerUser = async (req: Request, res: Response) => {
 
     const { username, password } = result.data;
 
-    console.log(`Got: ${username} - ${password}`);
-
-    // const sailsRounds = 10; // Salt rounds for encryption
     const hashedUsername = encryptString(username); //await bcrypt.hash(username, sailsRounds);
     const hashedPassword = encryptString(password); //await bcrypt.hash(password, sailsRounds);
-
-    console.log(`Hashed username: ${hashedUsername}`);
-    console.log(`Hashed password: ${hashedPassword}`);
 
     const userKeyringAddress = await keyringModel.userKeyringAddress(hashedUsername);
 
@@ -170,8 +153,6 @@ const registerUser = async (req: Request, res: Response) => {
         hashedPassword
     );
     const formatedLockedSignlessAccount = sailscalls.modifyPairToContract(lockedSignlessAccount);
-    console.log(newKeyringPair.address);
-    console.log('Se termino de crear la cuenta: ', decodeAddress(newKeyringPair.address));
     
     let keyringVoucherId = '';
     try {
@@ -185,8 +166,6 @@ const registerUser = async (req: Request, res: Response) => {
                 onError() { console.log('Error while issue voucher to signless') }
             }
         });
-        console.log('se creo el voucher');
-        
     } catch(e) {
         console.log('Error while issue a voucher to a singless account!');
         console.log(e);
@@ -200,8 +179,6 @@ const registerUser = async (req: Request, res: Response) => {
         hashedUsername,
         formatedLockedSignlessAccount
     );
-
-    console.log(response);
 
     const token = jwt.sign(
         { 
